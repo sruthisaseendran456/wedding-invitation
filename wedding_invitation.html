@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sruthi & Dhanvin | Wedding Invitation</title>
+    <!-- Google Fonts: Playfair Display for Elegance, Inter for Body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #041f16;
+            --secondary-bg: #0a2e22;
+            --gold-light: #f5d36b;
+            --gold-dark: #d4af37;
+            --text-light: #f9f6f0;
+            --text-dim: #b3c2bc;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, .elegant-text {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-light);
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(4, 31, 22, 0.7), rgba(4, 31, 22, 0.9)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80') center/cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin: 0;
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+
+        .scroll-btn {
+            margin-top: 40px;
+            padding: 14px 35px;
+            border-radius: 30px;
+            border: 1px solid var(--gold-dark);
+            background: transparent;
+            color: var(--gold-light);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-btn:hover {
+            background: var(--gold-dark);
+            color: var(--primary-bg);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .invite-text {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            line-height: 1.8;
+            color: var(--text-dim);
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .countdown-item {
+            background: rgba(10, 46, 34, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 25px;
+            border-radius: 16px;
+            min-width: 100px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Scratch Card */
+        .scratch-container {
+            margin: 40px auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .scratch-card {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold-dark);
+            background: var(--secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scratch-content {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            text-align: center;
+            z-index: 1;
+            user-select: none;
+        }
+        .scratch-content small {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-light);
+        }
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: crosshair;
+            touch-action: none;
+        }
+
+        /* Events Section */
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: linear-gradient(145deg, rgba(10, 46, 34, 0.8), rgba(4, 31, 22, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 50px 30px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        .event-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--gold-light);
+        }
+
+        .event-detail {
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .event-detail-icon {
+            color: var(--gold-dark);
+            font-size: 1.2rem;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 28px;
+            background: var(--gold-dark);
+            color: var(--primary-bg);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .map-btn:hover {
+            background: var(--gold-light);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--text-dim);
+        }
+
+        .floral-accent {
+            width: 100px;
+            margin: 20px auto;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Envelope Overlay */
+        #envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            cursor: pointer;
+        }
+        
+        .envelope-card {
+            border: 2px solid var(--gold-dark);
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 10px;
+            background: rgba(4, 31, 22, 0.9);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite alternate;
+        }
+
+        body.locked {
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
+            100% { transform: scale(1.02); box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .section-title { font-size: 2.5rem; }
+            .event-card { padding: 40px 20px; }
+            .countdown { gap: 8px; flex-wrap: nowrap; overflow-x: auto; padding: 10px 0; }
+            .countdown-item { padding: 15px 10px; min-width: 65px; flex-shrink: 1; }
+            .countdown-value { font-size: 1.8rem; }
+            .countdown-label { font-size: 0.6rem; letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <!-- Envelope Overlay -->
+    <div id="envelope-overlay" onclick="openEnvelope()">
+        <div class="envelope-card">
+            <h3 class="elegant-text" style="font-size: 1.5rem; margin-bottom: 10px;">You are invited</h3>
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold-light); margin: 0;">S & D</h1>
+            <p style="color: var(--text-dim); margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">👆 Tap to Open 👆</p>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h2 class="elegant-text">We Are Getting Married</h2>
+            <h1 style="font-size: 4rem;">SRUTHI ❤️ DHANVIN</h1>
+            <button class="scroll-btn" onclick="scrollToInvite()">Open Invitation</button>
+        </div>
+    </div>
+
+    <section id="invite">
+        <h2 class="section-title reveal">Join Us In Celebration</h2>
+        <p class="invite-text reveal">
+            Together with our families, we joyfully invite you to share in our happiness as we unite in marriage. Your presence will make our special day complete.
+        </p>
+
+        <div class="scratch-container reveal">
+            <h3 class="elegant-text" style="font-size: 2rem; margin-bottom: 20px;">Save The Date</h3>
+            <div class="scratch-card">
+                <div class="scratch-content">
+                    13 September 2026
+                </div>
+                <canvas id="scratch-canvas"></canvas>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--gold-light); margin-top: 15px; animation: pulse 2s infinite alternate;">👆 Scratch to reveal the date! 👆</p>
+        </div>
+
+    </section>
+
+    <section id="countdown-section">
+        <h2 class="section-title reveal">Countdown</h2>
+        <p class="invite-text reveal" style="margin-bottom: 20px;">Time left until we say "I do"</p>
+        <div class="countdown reveal">
+            <div class="countdown-item">
+                <div class="countdown-value" id="days">00</div>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="hours">00</div>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="minutes">00</div>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-value" id="seconds">00</div>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <h2 class="section-title reveal">The Wedding Events</h2>
+        <div class="events-container reveal">
+            
+            <!-- Thalikettu Ceremony -->
+            <div class="event-card">
+                <h3 class="event-title">Wedding Ceremony <br><small style="font-size: 1.2rem; font-style: italic; color: #b3c2bc;">(Thalikettu)</small></h3>
+                <div class="event-detail">
+                    <span class="event-detail-icon">📅</span>
+                    Sunday, 13 September 2026<br>
+                    (Chingam 23)
+                </div>
+                <div class="event-detail">
+                    <span class="event-detail-icon">📍</span>
+                    Guruvayoor Sreekrishna Temple, Guruvayoor
+                </div>
+            </div>
+
+            <!-- Wedding Function -->
+            <div class="event-card">
+                <h3 class="event-title">Wedding Function</h3>
+                <div class="event-detail">
+                    <span class="event-detail-icon">📅</span>
+                    Sunday, 13 September 2026
+                </div>
+                <div class="event-detail">
+                    <span class="event-detail-icon">⏰</span>
+                    10:30 AM onwards
+                </div>
+                <div class="event-detail">
+                    <span class="event-detail-icon">📍</span>
+                    Seenai Parish Hall<br>
+                    MCPF+PHQ, Pazhayannur, Vadakkethara, Kerala - 680587
+                </div>
+                <a class="map-btn" href="https://maps.google.com/?q=Seenai+Parish+Hall,+MCPF+PHQ,+Pazhayannur,+Vadakkethara,+Kerala" target="_blank">View on Map</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <h3 class="elegant-text" style="font-size: 2rem;">S & D</h3>
+        <p>Looking forward to celebrating with you!</p>
+    </footer>
+
+    <script>
+        // Scroll to invite section
+        function scrollToInvite() {
+            document.getElementById('invite').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Countdown Timer Logic
+        const weddingDate = new Date("2026-09-13T00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Animation Observer (Reveal elements on scroll)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // Envelope Logic
+        function openEnvelope() {
+            const overlay = document.getElementById('envelope-overlay');
+            overlay.style.transform = 'translateY(-100vh)'; // slide up
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                document.body.classList.remove('locked');
+            }, 1200);
+        }
+
+        // Scratch Card Logic
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        function initCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Fill with gold gradient
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#f5d36b');
+            gradient.addColorStop(0.5, '#d4af37');
+            gradient.addColorStop(1, '#f5d36b');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add some text on top
+            ctx.fillStyle = '#041f16';
+            ctx.font = 'bold 22px "Inter", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SCRATCH HERE', canvas.width/2, canvas.height/2);
+        }
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            if (e.cancelable) e.preventDefault(); // Prevent scrolling on mobile while scratching
+            const pos = getMousePos(e);
+            
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, {passive: false});
+        
+        window.addEventListener('mouseup', () => { isDrawing = false; });
+        window.addEventListener('touchend', () => { isDrawing = false; });
+        
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchmove', scratch, {passive: false});
+
+        window.addEventListener('load', initCanvas);
+        // Ensure it draws correctly if window size changes
+        window.addEventListener('resize', () => {
+            if (canvas.width !== canvas.offsetWidth) initCanvas();
+        });
+    </script>
+</body>
+</html>
