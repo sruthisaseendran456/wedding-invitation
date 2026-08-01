@@ -44,8 +44,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(4, 31, 22, 0.7), rgba(4, 31, 22, 0.9)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80') center/cover;
-            background-attachment: fixed;
+            background: linear-gradient(rgba(4, 31, 22, 0.4), rgba(4, 31, 22, 0.75)), url('IMG-20260726-WA0099.jpg') center 22%/cover;
             overflow: hidden;
         }
 
@@ -56,9 +55,9 @@
         }
 
         .hero h1 {
-            font-size: 5rem;
+            font-size: 4.8rem;
             margin: 0;
-            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85), 0 0 15px rgba(212, 175, 55, 0.3);
             letter-spacing: 2px;
         }
 
@@ -70,6 +69,7 @@
             margin-top: 10px;
             font-family: 'Inter', sans-serif;
             font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
         }
 
         .scroll-btn {
@@ -311,44 +311,327 @@
             transform: translateY(0);
         }
 
-        /* Envelope Overlay */
-        #envelope-overlay {
+        /* Grand Double Doors Overlay */
+        #door-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: 9999;
+            display: flex;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .door {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-bg), var(--secondary-bg));
+            display: flex;
+            align-items: center;
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            position: relative;
+        }
+
+        .door-left {
+            justify-content: flex-end;
+            border-right: 2px solid var(--gold-dark);
+            transform-origin: left;
+        }
+        
+        .door-right {
+            justify-content: flex-start;
+            border-left: 2px solid var(--gold-dark);
+            transform-origin: right;
+        }
+
+        .door-content-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-right: 60px;
+        }
+        .door-content-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 60px;
+        }
+
+        .door-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: var(--gold-light);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .door h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+        }
+
+        /* The '&' symbol sits centered on the dividing line */
+        .door-ampersand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            font-style: italic;
+            color: var(--gold-light);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            z-index: 10001;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        /* Wax Seal Coin Button */
+        .door-center-lock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 10000;
+        }
+
+        .wax-seal {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #f5d36b, #c8960c 60%, #a07800);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
+            box-shadow:
+                0 0 0 6px rgba(212, 175, 55, 0.3),
+                0 0 0 12px rgba(212, 175, 55, 0.15),
+                0 8px 30px rgba(0,0,0,0.5);
+            position: relative;
+            animation: seal-pulse 2s infinite;
             cursor: pointer;
         }
-        
-        .envelope-card {
-            border: 2px solid var(--gold-dark);
-            padding: 60px 40px;
-            text-align: center;
-            border-radius: 10px;
-            background: rgba(4, 31, 22, 0.9);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            animation: pulse 2s infinite alternate;
+
+        .wax-seal::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            top: 0; left: 0;
         }
 
-        body.locked {
+        /* Ripple rings */
+        .wax-seal::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            animation: ripple 2s infinite;
+        }
+
+        .seal-monogram {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--primary-bg);
+            font-weight: 700;
+            z-index: 1;
+            letter-spacing: 2px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            line-height: 1;
+        }
+
+        .seal-you-are {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .seal-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            background: rgba(4, 31, 22, 0.85);
+            padding: 5px 16px;
+            border-radius: 20px;
+            text-shadow: 0 0 10px rgba(212,175,55,0.5);
+            animation: blink-tap 1.5s infinite alternate;
+            white-space: nowrap;
+        }
+
+        @keyframes blink-tap {
+            0%   { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes seal-pulse {
+            0%, 100% { box-shadow: 0 0 0 6px rgba(212,175,55,0.3), 0 0 0 12px rgba(212,175,55,0.15), 0 8px 30px rgba(0,0,0,0.5); }
+            50%  { box-shadow: 0 0 0 10px rgba(212,175,55,0.4), 0 0 0 20px rgba(212,175,55,0.1), 0 8px 30px rgba(0,0,0,0.5); }
+        }
+
+        @keyframes ripple {
+            0%   { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .calendar-wrapper {
+            display: inline-block;
+            background: linear-gradient(145deg, rgba(10,46,34,0.9), rgba(4,31,22,0.95));
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            padding: 20px; /* reduced padding */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 320px; /* reduced max width */
+            width: 100%;
+            position: relative;
             overflow: hidden;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); }
-            100% { transform: scale(1.02); box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2); }
+        .calendar-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+        }
+
+        .calendar-month {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 5px;
+        }
+
+        .calendar-year {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            text-align: center;
+        }
+
+        .cal-day-name {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .cal-day {
+            width: 30px; /* reduced size */
+            height: 30px; /* reduced size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.8rem; /* slightly smaller */
+            color: var(--text-dim);
+            margin: 0 auto;
+            transition: all 0.2s ease;
+        }
+
+        .cal-day.empty { visibility: hidden; }
+
+        .cal-day.special {
+            background: radial-gradient(circle at 35% 35%, #f5d36b, #c8960c 60%, #a07800);
+            color: var(--primary-bg);
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 0 0 4px rgba(212,175,55,0.25), 0 0 15px rgba(212,175,55,0.4);
+            flex-direction: column;
+            gap: 0;
+            animation: glow-date 2s infinite alternate;
+        }
+
+        .cal-day.special .heart {
+            font-size: 0.55rem;
+            line-height: 1;
+        }
+
+        @keyframes glow-date {
+            0%   { box-shadow: 0 0 0 4px rgba(212,175,55,0.25), 0 0 15px rgba(212,175,55,0.3); }
+            100% { box-shadow: 0 0 0 8px rgba(212,175,55,0.15), 0 0 25px rgba(212,175,55,0.6); }
+        }
+
+        .cal-save-label {
+            margin-top: 22px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            letter-spacing: 1px;
         }
 
         /* Responsive */
+        .save-date-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(145deg, rgba(10,46,34,0.9), rgba(4,31,22,0.95));
+            border: 2px solid var(--gold-dark);
+            border-radius: 30px;
+            padding: 20px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-top: 15px;
+        }
+
+        .date-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold-light);
+        }
+
+        .date-heart {
+            font-size: 2.5rem;
+            color: var(--gold-light);
+        }
+
         @media (max-width: 768px) {
+            .date-number { font-size: 2.2rem; }
+            .date-heart { font-size: 1.8rem; }
+            .calendar-month { font-size: 1.5rem; }
+            .calendar-year { font-size: 0.75rem; }
+            .cal-day-name { font-size: 0.6rem; }
+            .cal-day { width: 26px; height: 26px; font-size: 0.7rem; }
             .hero h1 { font-size: 3.5rem; }
             .hero h2 { font-size: 1.2rem; }
             .section-title { font-size: 2.5rem; }
@@ -362,19 +645,26 @@
 </head>
 <body class="locked">
 
-    <!-- Envelope Overlay -->
-    <div id="envelope-overlay" onclick="openEnvelope()">
-        <div class="envelope-card">
-            <h3 class="elegant-text" style="font-size: 1.5rem; margin-bottom: 10px;">You are invited</h3>
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold-light); margin: 0;">S & D</h1>
-            <p style="color: var(--text-dim); margin-top: 30px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">👆 Tap to Open 👆</p>
+    <!-- Grand Double Doors Overlay -->
+    <div id="door-overlay" onclick="openDoors()">
+        <div class="door door-left" id="door-left"></div>
+        <div class="door door-right" id="door-right"></div>
+
+        <!-- Wax Seal Coin — perfectly centered -->
+        <div class="door-center-lock" id="door-lock">
+            <div class="wax-seal">
+                <span class="seal-monogram">S &amp; D</span>
+            </div>
+            <p class="seal-you-are">You are invited</p>
+            <span class="seal-label">Open the Invitation</span>
+            <span class="seal-label">👆 Tap to Open</span>
         </div>
     </div>
 
     <div class="hero">
         <div class="hero-content">
             <h2 class="elegant-text">We Are Getting Married</h2>
-            <h1 style="font-size: 4rem;">SRUTHI ❤️ DHANVIN</h1>
+            <h1>SRUTHI ❤️ DHANVIN</h1>
             <button class="scroll-btn" onclick="scrollToInvite()">Open Invitation</button>
         </div>
     </div>
@@ -453,7 +743,7 @@
                 <div class="event-detail">
                     <span class="event-detail-icon">📍</span>
                     Seenai Parish Hall<br>
-                    MCPF+PHQ, Pazhayannur, Vadakkethara, Kerala - 680587
+                    Pazhayannur, Vadakkethara, Kerala - 680587
                 </div>
                 <a class="map-btn" href="https://maps.google.com/?q=Seenai+Parish+Hall,+MCPF+PHQ,+Pazhayannur,+Vadakkethara,+Kerala" target="_blank">View on Map</a>
             </div>
@@ -461,10 +751,83 @@
         </div>
     </section>
 
+    <!-- September 2026 Calendar -->
+    <section class="calendar-section reveal">
+        <h2 class="section-title">Save The Date</h2>
+        <p class="invite-text" style="margin-bottom: 30px;">Mark your calendar for our special day</p>
+        <div class="calendar-wrapper reveal">
+            <div class="calendar-month">September</div>
+            <div class="calendar-year">2026</div>
+            <div class="calendar-grid">
+                <!-- Day names -->
+                <div class="cal-day-name">Sun</div>
+                <div class="cal-day-name">Mon</div>
+                <div class="cal-day-name">Tue</div>
+                <div class="cal-day-name">Wed</div>
+                <div class="cal-day-name">Thu</div>
+                <div class="cal-day-name">Fri</div>
+                <div class="cal-day-name">Sat</div>
+
+                <!-- Sep 2026: starts on Tuesday (offset 2) -->
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day">1</div>
+                <div class="cal-day">2</div>
+                <div class="cal-day">3</div>
+                <div class="cal-day">4</div>
+                <div class="cal-day">5</div>
+
+                <div class="cal-day">6</div>
+                <div class="cal-day">7</div>
+                <div class="cal-day">8</div>
+                <div class="cal-day">9</div>
+                <div class="cal-day">10</div>
+                <div class="cal-day">11</div>
+                <div class="cal-day">12</div>
+
+                <!-- 13th — Wedding Day! -->
+                <div class="cal-day special">
+                    13
+                    <span class="heart">❤️</span>
+                </div>
+                <div class="cal-day">14</div>
+                <div class="cal-day">15</div>
+                <div class="cal-day">16</div>
+                <div class="cal-day">17</div>
+                <div class="cal-day">18</div>
+                <div class="cal-day">19</div>
+
+                <div class="cal-day">20</div>
+                <div class="cal-day">21</div>
+                <div class="cal-day">22</div>
+                <div class="cal-day">23</div>
+                <div class="cal-day">24</div>
+                <div class="cal-day">25</div>
+                <div class="cal-day">26</div>
+
+                <div class="cal-day">27</div>
+                <div class="cal-day">28</div>
+                <div class="cal-day">29</div>
+                <div class="cal-day">30</div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+                <div class="cal-day empty"></div>
+            </div>
+            <div class="cal-save-label">Our Wedding Day <br> Sruthi & Dhanvin ❤️</div>
+        </div>
+    </section>
+
+
     <footer>
         <h3 class="elegant-text" style="font-size: 2rem;">S & D</h3>
         <p>Looking forward to celebrating with you!</p>
     </footer>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="Music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         // Scroll to invite section
@@ -517,16 +880,31 @@
         // Trigger once on load
         reveal();
 
-        // Envelope Logic
-        function openEnvelope() {
-            const overlay = document.getElementById('envelope-overlay');
-            overlay.style.transform = 'translateY(-100vh)'; // slide up
-            overlay.style.opacity = '0';
+        // Grand Doors Logic
+        function openDoors() {
+            const leftDoor = document.getElementById('door-left');
+            const rightDoor = document.getElementById('door-right');
+            const lock = document.getElementById('door-lock');
+            const overlay = document.getElementById('door-overlay');
+            const bgMusic = document.getElementById('bg-music');
+
+            // Play music
+            if (bgMusic) {
+                bgMusic.play().catch(err => console.log("Audio play failed:", err));
+            }
+
+            lock.style.opacity = '0';
+            lock.style.transform = 'translate(-50%, -50%) scale(0.5)';
+            
+            setTimeout(() => {
+                leftDoor.style.transform = 'translateX(-100%)';
+                rightDoor.style.transform = 'translateX(100%)';
+            }, 300);
             
             setTimeout(() => {
                 overlay.style.display = 'none';
                 document.body.classList.remove('locked');
-            }, 1200);
+            }, 1800);
         }
 
         // Scratch Card Logic
